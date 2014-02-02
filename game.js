@@ -45,6 +45,7 @@ function game(gameData) {
 	function populateShop(shopItems) {
 		$.each(shopItems, function(i, item) {
 			$('<div id="'+item.name+'"></div>').appendTo("#shopMenu");
+			$("#"+item.name).text('');
 			$.each(item, function(key, value) {
 				$("#"+item.name).append(key+" : "+value+".<br />");
 			});
@@ -56,12 +57,14 @@ function game(gameData) {
 	}
 
 	function buyItem(item) {
-		if (clicks > item.prize) {
+		if (clicks >= item.prize) {
 		console.log(item.name);
 		boughtItems.push(item.name);
 		$("#owned").append("<p>"+item.name+"</p>");
 		addClicks(-item.prize);
 		addClicksPerSecond(item.cps);
+		item.prize = Math.floor(item.prize*1.3);
+		populateShop(shopList);
 		}
 	}
 }	
