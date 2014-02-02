@@ -6,13 +6,16 @@ function game(gameData) {
 	clicks = 0;
 	onClick = 1;
 	clicksPerSecond = 0;
-	boughtItems = [];
+	boughtItems = {};
 	var shopList = gameData;
+	populateBoughtItems(shopList);
+	console.log(boughtItems);
+
 	console.log(shopList);
 	populateShop(shopList);
 	setInterval(function() {
-		addClicks(clicksPerSecond);
-	}, 1000);
+		addClicks(clicksPerSecond/10);
+	}, 100);
 	$("#clickMe").click(function() {
 		addClicks(onClick);
 	});
@@ -39,12 +42,13 @@ function game(gameData) {
 	
 	function addClicks(c) {
 		clicks += c;
-		$("#clicks").text(getClicks());
+		$("#clicks").text(getClicks().toFixed(1));
 	}
 
 	function populateShop(shopItems) {
 		$.each(shopItems, function(i, item) {
 			$('<div id="'+item.name+'"></div>').appendTo("#shopMenu");
+			$('<div id="owned'+item.name+'"></div>').appendTo("#owned");
 			$("#"+item.name).text('');
 			$.each(item, function(key, value) {
 				$("#"+item.name).append(key+" : "+value+".<br />");
@@ -55,17 +59,31 @@ function game(gameData) {
 			$("#shopMenu").append("<br />");
 		});
 	}
+	
+	function populateBoughtItems(shopItems) {
+		$.each(shopItems, function(i, item) {
+			boughtItems[item.name] = 0;
+		});
+	}
 
 	function buyItem(item) {
 		if (clicks >= item.prize) {
 		console.log(item.name);
-		boughtItems.push(item.name);
-		$("#owned").append("<p>"+item.name+"</p>");
+		updateBoughtItems(item.name);
 		addClicks(-item.prize);
 		addClicksPerSecond(item.cps);
 		item.prize = Math.floor(item.prize*1.3);
 		populateShop(shopList);
 		}
+	}
+	
+	function updateBoughtItems(itemName) {
+		if (boughtItems[itemName] != 'undefined') {
+			boughtItems[itemName] += 1;
+		} else {
+			boughtItems[itemName] = 1;
+		}
+		$("#owned"+itemName).text(""+itemName+": "+boughtItems[itemName]+"");
 	}
 }	
 

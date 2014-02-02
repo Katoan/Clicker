@@ -12,4 +12,9 @@ To Do:
 * ~~Set the clicker to range based on items bought from shop~~
 * ~~Set the items in the shop to increase in value as more purchases are made~~
 * ~~Generate a timer based autoclicker~~
-* Generate timer based refresh cycles to various parts of the page
+* ~~Generate event based refresh methods to various changing parts of the page~~
+
+Fixes:
+* Fixed the OWNED list functionality to be more concise
+* Fixed the hover and selectability of the shop hovers
+
