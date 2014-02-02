@@ -3,8 +3,9 @@ Training:
 * Create a clicker
 * Test managing DOM elements with jQuery
 * Test accessing a JSON file
+
 To Do:
-* Generate html with jQuery
+* Generate html with jQuery - to train DOM manipulation, not the smartest way of doing it
 * Populate page from JSON files
 * Generate a game object with game data
 * Set the clicker to click
