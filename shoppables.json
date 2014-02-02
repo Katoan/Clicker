@@ -1,0 +1,6 @@
+{
+"shop":	[
+	{"name":"Tester", "cps":1, "prize":10},
+	{"name":"Tester2", "cps":10, "prize":100}
+	]
+}

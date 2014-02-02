@@ -1,0 +1,22 @@
+#clicker {
+	cursor: pointer;
+	user-select: none; 
+	-o-user-select: none; 
+	-moz-user-select: none; 
+	-khtml-user-select: none; 
+	-webkit-user-select: none; 
+}
+
+#mainLeft {
+	float: left;
+	width: 400px;
+}
+
+#mainRight {
+	float: right;
+	width: 400px;
+}
+
+#ownedContainer {
+	float: left;
+}
