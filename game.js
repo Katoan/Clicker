@@ -1,34 +1,47 @@
 $(document).ready(function() {
-	var peli = new game();
-
-	$("#clickMe").click(function() {
-		peli.addClicks(1);
-		$("#clicks").text(peli.getClicks());
-	});
+	startGame();
 });
 
-function game() {
-	this.clicks = 0;
-	populateShop();
+function game(gameData) {
+	clicks = 0;
+	onClick = 1;
+	boughtItems = [];
+	var shopList = gameData;
+	console.log(shopList);
+	populateShop(shopList);
+	$("#clickMe").click(function() {
+		addClicks(onClick);
+		$("#clicks").text(getClicks());
+	});
 	
-	this.getClicks = getClicks;
 	function getClicks() {
-		return this.clicks;
+		return clicks;
 	}
 	
-	this.addClicks = addClicks;
 	function addClicks(c) {
-		this.clicks += c;
+		clicks += c;
 	}
+}	
+
+function startGame() {
+	$.getJSON("shoppables.json", function(data) {
+		var items = [];
+		$.each(data.shop, function(item) {
+			items.push(data.shop[item]);
+		});
+		new game(items);
+	});
 }
 
-	// populate shoppables
-function populateShop() {
-	$.getJSON("http://127.0.0.1/clicker2/shoppables.json", function(data) {
-		$.each(data.shop, function(i, item) {
-			$.each(item, function(key, value) {
-				$("#shopMenu").append(key + " "+ value + "<br>");
-			});
+function populateShop(shopItems) {
+	$.each(shopItems, function(i, item) {
+		$('<div id="'+item.name+'">').appendTo("#shopMenu");
+		$.each(item, function(key, value) {
+			$("#"+item.name).append(key+" : "+value+".<br />");
 		});
+		$("#shopMenu").append("<br />");
 	});
-}	
+}
+
+function buyItem(item) {
+}
