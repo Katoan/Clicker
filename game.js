@@ -5,14 +5,33 @@ $(document).ready(function() {
 function game(gameData) {
 	clicks = 0;
 	onClick = 1;
+	clicksPerSecond = 0;
 	boughtItems = [];
 	var shopList = gameData;
 	console.log(shopList);
 	populateShop(shopList);
+	setInterval(function() {
+		addClicks(clicksPerSecond);
+	}, 1000);
 	$("#clickMe").click(function() {
 		addClicks(onClick);
-		$("#clicks").text(getClicks());
 	});
+	
+	function getClicksPerSecond() {
+		return clicksPerSecond;
+	}
+	
+	function addClicksPerSecond(c) {
+		clicksPerSecond += c;
+	}
+	
+	function getOnClick() {
+		return onClick;
+	}
+	
+	function changeOnClick(c) {
+		onClick += c;
+	}
 	
 	function getClicks() {
 		return clicks;
@@ -20,6 +39,30 @@ function game(gameData) {
 	
 	function addClicks(c) {
 		clicks += c;
+		$("#clicks").text(getClicks());
+	}
+
+	function populateShop(shopItems) {
+		$.each(shopItems, function(i, item) {
+			$('<div id="'+item.name+'"></div>').appendTo("#shopMenu");
+			$.each(item, function(key, value) {
+				$("#"+item.name).append(key+" : "+value+".<br />");
+			});
+			$("#"+item.name).click(function() {
+				buyItem(item);
+				});
+			$("#shopMenu").append("<br />");
+		});
+	}
+
+	function buyItem(item) {
+		if (clicks > item.prize) {
+		console.log(item.name);
+		boughtItems.push(item.name);
+		$("#owned").append("<p>"+item.name+"</p>");
+		addClicks(-item.prize);
+		addClicksPerSecond(item.cps);
+		}
 	}
 }	
 
@@ -31,17 +74,4 @@ function startGame() {
 		});
 		new game(items);
 	});
-}
-
-function populateShop(shopItems) {
-	$.each(shopItems, function(i, item) {
-		$('<div id="'+item.name+'">').appendTo("#shopMenu");
-		$.each(item, function(key, value) {
-			$("#"+item.name).append(key+" : "+value+".<br />");
-		});
-		$("#shopMenu").append("<br />");
-	});
-}
-
-function buyItem(item) {
 }
