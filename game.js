@@ -9,9 +9,6 @@ function game(gameData) {
 	boughtItems = {};
 	var shopList = gameData;
 	populateBoughtItems(shopList);
-	console.log(boughtItems);
-
-	console.log(shopList);
 	populateShop(shopList);
 	setInterval(function() {
 		addClicks(clicksPerSecond/10);
@@ -68,7 +65,6 @@ function game(gameData) {
 
 	function buyItem(item) {
 		if (clicks >= item.prize) {
-		console.log(item.name);
 		updateBoughtItems(item.name);
 		addClicks(-item.prize);
 		addClicksPerSecond(item.cps);

@@ -14,6 +14,9 @@ To Do:
 * ~~Generate a timer based autoclicker~~
 * ~~Generate event based refresh methods to various changing parts of the page~~
 
+To Do MORE!:
+* Add other types of items that increase click effect
+
 Fixes:
 * Fixed the OWNED list functionality to be more concise
 * Fixed the hover and selectability of the shop hovers
