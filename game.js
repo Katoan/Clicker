@@ -7,6 +7,7 @@ function game(gameData) {
 	onClick = 1;
 	clicksPerSecond = 0;
 	boughtItems = {};
+	var shopPopulated = 0;
 	var shopList = gameData;
 	populateBoughtItems(shopList);
 	populateShop(shopList);
@@ -39,22 +40,24 @@ function game(gameData) {
 	
 	function addClicks(c) {
 		clicks += c;
-		$("#clicks").text(getClicks().toFixed(1));
+		$("#clicks").text('Influence: '+getClicks().toFixed(1));
 	}
 
 	function populateShop(shopItems) {
 		$.each(shopItems, function(i, item) {
-			$('<div id="'+item.name+'"></div>').appendTo("#shopMenu");
-			$('<div id="owned'+item.name+'"></div>').appendTo("#owned");
-			$("#"+item.name).text('');
+			if(!shopPopulated) {
+				$('<div id="kauppa'+item.name+'"></div>').appendTo("#shopMenu");
+				$('<div id="owned'+item.name+'"></div>').appendTo("#owned");
+			}
+			$("#kauppa"+item.name).text('');
 			$.each(item, function(key, value) {
-				$("#"+item.name).append(key+" : "+value+".<br />");
+				$("#kauppa"+item.name).append(key+" : "+value+"<br />");
 			});
-			$("#"+item.name).click(function() {
+			$("#kauppa"+item.name).click(function() {
 				buyItem(item);
 				});
-			$("#shopMenu").append("<br />");
 		});
+		shopPopulated = 1;
 	}
 	
 	function populateBoughtItems(shopItems) {
@@ -64,11 +67,11 @@ function game(gameData) {
 	}
 
 	function buyItem(item) {
-		if (clicks >= item.prize) {
+		if (clicks >= item.price) {
 		updateBoughtItems(item.name);
-		addClicks(-item.prize);
+		addClicks(-item.price);
 		addClicksPerSecond(item.cps);
-		item.prize = Math.floor(item.prize*1.3);
+		item.price = Math.floor(item.price*1.3);
 		populateShop(shopList);
 		}
 	}
