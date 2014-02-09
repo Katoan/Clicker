@@ -1,6 +1,6 @@
 {
 "shop": [
-	{"name":"Tester", "cps":1, "price":10},
-	{"name":"Tester2", "cps":10, "price":100}
+	{"name":"Tester", "cps":1, "price":10, "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget leo sit amet augue facilisis pellentesque ut commodo dolor. Curabitur ut placerat arcu, faucibus aliquet leo. Integer tristique feugiat orci, ut tristique sapien. Suspendisse scelerisque nec nunc lobortis malesuada. Phasellus imperdiet volutpat condimentum. Nunc imperdiet hendrerit lorem. Morbi a sem sapien. Proin eu faucibus nisl, eu ornare magna. Nam at ultrices augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;"},
+	{"name":"Tester2", "cps":10, "price":100, "description": "Aenean pharetra mollis urna nec aliquet. Donec scelerisque tortor at mi pretium mattis. Suspendisse gravida eu urna pulvinar tincidunt. Sed vitae nulla sit amet eros dictum lobortis in nec leo. Maecenas imperdiet sollicitudin augue, eget dignissim est sagittis convallis. Aliquam et enim ut est porta consectetur ut non felis. Morbi porttitor hendrerit dolor, at viverra nunc consequat at. Vivamus a ullamcorper lectus. Nam ultrices, eros eget euismod molestie, odio justo porta velit, ac tempor nisl quam eu metus. Integer magna ante, euismod fringilla ante non, fringilla egestas arcu. Mauris sed pharetra magna. Nullam at felis quis mauris adipiscing scelerisque euismod eu justo."}
 ]
 }
